@@ -1,0 +1,1959 @@
+// converted by version 1.3
+// on Sun Aug 28 21:18:04 ICT 2022
+
+.package com/card/cardpet {
+	.aid 0x11:0x22:0x33:0x44:0x55;
+	.version 1.0;
+
+	.imports {
+		0xA0:0x0:0x0:0x0:0x62:0x0:0x1 1.0;		//java/lang
+		0xA0:0x0:0x0:0x0:0x62:0x2:0x1 1.3;		//javacardx/crypto
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x1 1.3;		//javacard/framework
+		0xA0:0x0:0x0:0x0:0x62:0x1:0x2 1.3;		//javacard/security
+		0xA0:0x0:0x0:0x0:0x62:0x2:0x9 1.0;		//javacardx/apdu
+	}
+
+	.applet {
+		0x11:0x22:0x33:0x44:0x55:0x0 CardPet;
+	}
+
+	.constantPool {
+		// 0
+		instanceFieldRef 1.1 AES/cipher;
+		// 1
+		instanceFieldRef byte[] AES/temp;
+		// 2
+		instanceFieldRef byte[] Avatar/avatar;
+		// 3
+		instanceFieldRef short Avatar/size;
+		// 4
+		instanceFieldRef byte[] Card/id;
+		// 5
+		instanceFieldRef byte[] Card/namePeople;
+		// 6
+		instanceFieldRef byte[] Card/namePet;
+		// 7
+		instanceFieldRef byte[] Card/dateOfBirth;
+		// 8
+		instanceFieldRef byte[] Card/numberPhone;
+		// 9
+		instanceFieldRef byte[] Card/remainingBalance;
+		// 10
+		instanceFieldRef Avatar Card/avatar;
+		// 11
+		instanceFieldRef AES Card/aes;
+		// 12
+		instanceFieldRef PIN CardPet/pin;
+		// 13
+		instanceFieldRef 3.20 CardPet/key;
+		// 14
+		instanceFieldRef 3.15 CardPet/signature;
+		// 15
+		instanceFieldRef byte[] CardPet/avatarBuf;
+		// 16
+		instanceFieldRef byte[] CardPet/signatureBuf;
+		// 17
+		instanceFieldRef Card CardPet/card;
+		// 18
+		instanceFieldRef 3.8 CardPet/privateKey;
+		// 19
+		instanceFieldRef 3.9 CardPet/publicKey;
+		// 20
+		instanceFieldRef byte[] PIN/pin;
+		// 21
+		instanceFieldRef byte PIN/retry;
+		// 22
+		instanceFieldRef byte PIN/tryRemaining;
+		// 23
+		instanceFieldRef boolean PIN/isValidated;
+		// 24
+		instanceFieldRef 3.11 PIN/messageDigest;
+		// 25
+		virtualMethodRef Avatar/getAvatar(Lcom/card/cardpet/AES;Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 26
+		virtualMethodRef Avatar/setAvatar([BSSLcom/card/cardpet/AES;Ljavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 27
+		staticMethodRef 2.3.0()V;		// javacard/framework/Applet.<init>()V
+		// 28
+		classRef PIN;
+		// 29
+		staticMethodRef PIN/<init>()V;
+		// 30
+		virtualMethodRef AES/encrypt([BSSLjavacard/security/AESKey;[B)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 31
+		staticMethodRef 3.13.0(BSZ)Ljavacard/security/Key;;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+			.descriptor	Ljavacard/security/Key;	3.0;
+
+		// 32
+		classRef 3.20;		// javacard/security/AESKey
+		// 33
+		staticMethodRef 1.1.0(BZ)Ljavacardx/crypto/Cipher;;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+			.descriptor	Ljavacardx/crypto/Cipher;	1.1;
+
+		// 34
+		staticMethodRef 3.15.0(BZ)Ljavacard/security/Signature;;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+			.descriptor	Ljavacard/security/Signature;	3.15;
+
+		// 35
+		staticMethodRef 2.7.1(S)V;		// javacard/framework/ISOException.throwIt(S)V
+		// 36
+		virtualMethodRef 1.1.3(Ljavacard/security/Key;B)V;		// init(Ljavacard/security/Key;B)V
+			.descriptor	Ljavacard/security/Key;	3.0;
+
+		// 37
+		virtualMethodRef 1.1.1([BSS[BS)S;		// doFinal([BSS[BS)S
+		// 38
+		classRef CardPet;
+		// 39
+		staticMethodRef CardPet/<init>()V;
+		// 40
+		virtualMethodRef 2.3.2([BSB)V;		// register([BSB)V
+		// 41
+		virtualMethodRef 2.3.3()Z;		// selectingApplet()Z
+		// 42
+		virtualMethodRef 2.10.1()[B;		// getBuffer()[B
+		// 43
+		staticMethodRef CardPet/verify(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 44
+		staticMethodRef CardPet/create(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 45
+		staticMethodRef CardPet/get(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 46
+		staticMethodRef CardPet/update(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 47
+		staticMethodRef CardPet/resetPin(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 48
+		virtualMethodRef CardPet/createInformation(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 49
+		staticMethodRef CardPet/createSignature(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 50
+		virtualMethodRef 1.1.5([BSS[BS)S;		// update([BSS[BS)S
+		// 51
+		staticMethodRef CardPet/getInformation(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 52
+		staticMethodRef CardPet/getRemainingBalance(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 53
+		staticMethodRef CardPet/getAvatar(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 54
+		staticMethodRef CardPet/updatePin(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 55
+		staticMethodRef CardPet/updateAvatar(Ljavacard/framework/APDU;)V;
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+		// 56
+		staticMethodRef CardPet/updateInformation([B)V;
+		// 57
+		staticMethodRef CardPet/updateRemainingBalance([B)V;
+		// 58
+		virtualMethodRef PIN/match([BBS)Z;
+		// 59
+		virtualMethodRef PIN/getTryRemaining()B;
+		// 60
+		virtualMethodRef 2.10.8(SS)V;		// setOutgoingAndSend(SS)V
+		// 61
+		virtualMethodRef PIN/getPIN()[B;
+		// 62
+		staticMethodRef 2.8.1()V;		// javacard/framework/JCSystem.beginTransaction()V
+		// 63
+		classRef Card;
+		// 64
+		staticMethodRef Card/<init>()V;
+		// 65
+		virtualMethodRef Card/setId([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 66
+		virtualMethodRef Card/setNamePeople([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 67
+		virtualMethodRef Card/setDateOfBirth([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 68
+		virtualMethodRef Card/setNumberPhone([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 69
+		virtualMethodRef Card/setRemainingBalance([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 70
+		staticMethodRef 2.8.2()V;		// javacard/framework/JCSystem.commitTransaction()V
+		// 71
+		staticMethodRef RSA/generateKeyPair()Ljavacard/security/KeyPair;;
+			.descriptor	Ljavacard/security/KeyPair;	3.16;
+
+		// 72
+		virtualMethodRef 3.16.2()Ljavacard/security/PrivateKey;;		// getPrivate()Ljavacard/security/PrivateKey;
+			.descriptor	Ljavacard/security/PrivateKey;	3.2;
+
+		// 73
+		classRef 3.8;		// javacard/security/RSAPrivateKey
+		// 74
+		staticMethodRef 0.0.0()V;		// java/lang/Object.<init>()V
+		// 75
+		virtualMethodRef 3.16.3()Ljavacard/security/PublicKey;;		// getPublic()Ljavacard/security/PublicKey;
+			.descriptor	Ljavacard/security/PublicKey;	3.3;
+
+		// 76
+		classRef 3.9;		// javacard/security/RSAPublicKey
+		// 77
+		classRef Avatar;
+		// 78
+		staticMethodRef RSA/serializePublicKey(Ljavacard/security/RSAPublicKey;[BS)S;
+			.descriptor	Ljavacard/security/RSAPublicKey;	3.9;
+
+		// 79
+		virtualMethodRef 3.15.3(Ljavacard/security/Key;B)V;		// init(Ljavacard/security/Key;B)V
+			.descriptor	Ljavacard/security/Key;	3.0;
+
+		// 80
+		virtualMethodRef 3.15.5([BSS[BS)S;		// sign([BSS[BS)S
+		// 81
+		virtualMethodRef 2.10.7()S;		// setOutgoing()S
+		// 82
+		virtualMethodRef 2.10.9(S)V;		// setOutgoingLength(S)V
+		// 83
+		virtualMethodRef 2.10.5([BSS)V;		// sendBytesLong([BSS)V
+		// 84
+		virtualMethodRef Card/getId(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 85
+		virtualMethodRef Card/getNamePeople(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 86
+		virtualMethodRef Card/getDateOfBirth(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 87
+		virtualMethodRef Card/getNumberPhone(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 88
+		virtualMethodRef Card/getRemainingBalance(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 89
+		virtualMethodRef Card/getAvatar(Ljavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 90
+		staticMethodRef CardPet/getMin(SS)S;
+		// 91
+		virtualMethodRef PIN/update([BBS)V;
+		// 92
+		virtualMethodRef 2.10.6()S;		// setIncomingAndReceive()S
+		// 93
+		virtualMethodRef 2.10.16()S;		// getOffsetCdata()S
+		// 94
+		staticMethodRef 2.16.2([BS[BSS)S;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+		// 95
+		virtualMethodRef 2.10.3(S)S;		// receiveBytes(S)S
+		// 96
+		virtualMethodRef Card/setAvatar([BSSLjavacard/security/AESKey;)V;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 97
+		virtualMethodRef PIN/resetRetryPin()V;
+		// 98
+		staticMethodRef Avatar/<init>()V;
+		// 99
+		staticMethodRef 2.8.13(SB)[B;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+		// 100
+		classRef AES;
+		// 101
+		staticMethodRef AES/<init>()V;
+		// 102
+		staticMethodRef 3.11.0(BZ)Ljavacard/security/MessageDigest;;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+			.descriptor	Ljavacard/security/MessageDigest;	3.11;
+
+		// 103
+		virtualMethodRef AES/decrypt([BSSLjavacard/security/AESKey;[BS)S;
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+		// 104
+		staticFieldRef byte[] PIN/PIN_DEFAULT;
+		// 105
+		virtualMethodRef 3.11.1([BSS[BS)S;		// doFinal([BSS[BS)S
+		// 106
+		virtualMethodRef 3.11.4()V;		// reset()V
+		// 107
+		staticMethodRef 2.16.0([BS[BSS)B;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+		// 108
+		classRef 3.16;		// javacard/security/KeyPair
+		// 109
+		staticMethodRef 3.16.0(BS)V;		// javacard/security/KeyPair.<init>(BS)V
+		// 110
+		virtualMethodRef 3.16.1()V;		// genKeyPair()V
+		// 111
+		staticMethodRef 2.16.6([BSS)S;		// javacard/framework/Util.setShort([BSS)S
+	}
+
+	.class public AES 0 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private final 1.1 cipher 0;		// Ljavacardx/crypto/Cipher;
+			private final byte[] temp 1;		// [B
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			encrypt([BSSLjavacard/security/AESKey;[B)V;
+			decrypt([BSSLjavacard/security/AESKey;[BS)S;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 3;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 74;		// java/lang/Object.<init>()V
+					aload_0;
+					bspush 14;
+					sconst_0;
+					invokestatic 33;		// javacardx/crypto/Cipher.getInstance(BZ)Ljavacardx/crypto/Cipher;
+					putfield_a 0;		// reference com/card/cardpet/AES.cipher
+					aload_0;
+					bspush 16;
+					sconst_1;
+					invokestatic 99;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 1;		// reference com/card/cardpet/AES.temp
+					return;
+		}
+
+		.method public encrypt([BSSLjavacard/security/AESKey;[B)V 1 {
+			.stack 6;
+			.locals 1;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	sload_3;
+					sconst_1;
+					if_scmpge L2;
+				L1:	sspush 27012;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	sload_3;
+					bspush 16;
+					srem;
+					sstore 6;
+				L3:	getfield_a_this 0;		// reference com/card/cardpet/AES.cipher
+					aload 4;
+					sconst_2;
+					invokevirtual 36;		// init(Ljavacard/security/Key;B)V
+					sload 6;
+					ifne L5;
+				L4:	getfield_a_this 0;		// reference com/card/cardpet/AES.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 5;
+					sconst_0;
+					invokevirtual 37;		// doFinal([BSS[BS)S
+					pop;
+					return;
+				L5:	getfield_a_this 0;		// reference com/card/cardpet/AES.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 5;
+					sconst_0;
+					invokevirtual 50;		// update([BSS[BS)S
+					pop;
+					getfield_a_this 0;		// reference com/card/cardpet/AES.cipher
+					getfield_a_this 1;		// reference com/card/cardpet/AES.temp
+					sconst_0;
+					bspush 16;
+					sload 6;
+					ssub;
+					aload 5;
+					sconst_0;
+					invokevirtual 37;		// doFinal([BSS[BS)S
+					pop;
+					return;
+		}
+
+		.method public decrypt([BSSLjavacard/security/AESKey;[BS)S 2 {
+			.stack 6;
+			.locals 1;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	sload_3;
+					bspush 16;
+					srem;
+					ifeq L2;
+				L1:	sspush 27012;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	getfield_a_this 0;		// reference com/card/cardpet/AES.cipher
+					aload 4;
+					sconst_1;
+					invokevirtual 36;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 0;		// reference com/card/cardpet/AES.cipher
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 5;
+					sload 6;
+					invokevirtual 37;		// doFinal([BSS[BS)S
+					pop;
+					aload 5;
+					arraylength;
+					sconst_1;
+					ssub;
+					sstore 7;
+				L3:	sload 7;
+					iflt L7;
+				L4:	aload 5;
+					sload 7;
+					baload;
+					ifeq L6;
+				L5:	goto L7;
+				L6:	sinc 7 -1;
+					goto L3;
+				L7:	sload 7;
+					sload 6;
+					ssub;
+					sconst_1;
+					sadd;
+					sreturn;
+		}
+
+	}
+
+	.class public Avatar 1 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private final byte[] avatar 0;		// [B
+			private short size 1;		// S
+			public static final short MAX_SIZE_AVATAR = 4096;		// S
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			getAvatar(Lcom/card/cardpet/AES;Ljavacard/security/AESKey;[BS)S;
+			setAvatar([BSSLcom/card/cardpet/AES;Ljavacard/security/AESKey;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 74;		// java/lang/Object.<init>()V
+					aload_0;
+					sspush 4096;
+					newarray 11;
+					putfield_a 2;		// reference com/card/cardpet/Avatar.avatar
+					aload_0;
+					sconst_0;
+					putfield_s 3;		// short com/card/cardpet/Avatar.size
+					return;
+		}
+
+		.method public getAvatar(Lcom/card/cardpet/AES;Ljavacard/security/AESKey;[BS)S 1 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	aload_1;
+					getfield_a_this 2;		// reference com/card/cardpet/Avatar.avatar
+					sconst_0;
+					sspush 4096;
+					aload_2;
+					aload_3;
+					sload 4;
+					invokevirtual 103;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					pop;
+					getfield_s_this 3;		// short com/card/cardpet/Avatar.size
+					sreturn;
+		}
+
+		.method public setAvatar([BSSLcom/card/cardpet/AES;Ljavacard/security/AESKey;)V 2 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	aload 4;
+					aload_1;
+					sload_2;
+					sspush 4096;
+					aload 5;
+					getfield_a_this 2;		// reference com/card/cardpet/Avatar.avatar
+					invokevirtual 30;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					aload_0;
+					sload_3;
+					putfield_s 3;		// short com/card/cardpet/Avatar.size
+					return;
+		}
+
+	}
+
+	.class public Card 2 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			private final byte[] id 0;		// [B
+			private final byte[] namePeople 1;		// [B
+			private final byte[] namePet 2;		// [B
+			private final byte[] dateOfBirth 3;		// [B
+			private final byte[] numberPhone 4;		// [B
+			private final byte[] remainingBalance 5;		// [B
+			private final Avatar avatar 6;		// Lcom/card/cardpet/Avatar;
+			private final AES aes 7;		// Lcom/card/cardpet/AES;
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			getId(Ljavacard/security/AESKey;[BS)S;
+			setId([BSSLjavacard/security/AESKey;)V;
+			getNamePeople(Ljavacard/security/AESKey;[BS)S;
+			setNamePeople([BSSLjavacard/security/AESKey;)V;
+			getDateOfBirth(Ljavacard/security/AESKey;[BS)S;
+			setDateOfBirth([BSSLjavacard/security/AESKey;)V;
+			getNumberPhone(Ljavacard/security/AESKey;[BS)S;
+			setNumberPhone([BSSLjavacard/security/AESKey;)V;
+			getRemainingBalance(Ljavacard/security/AESKey;[BS)S;
+			setRemainingBalance([BSSLjavacard/security/AESKey;)V;
+			getAvatar(Ljavacard/security/AESKey;[BS)S;
+			setAvatar([BSSLjavacard/security/AESKey;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 3;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 74;		// java/lang/Object.<init>()V
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 4;		// reference com/card/cardpet/Card.id
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 5;		// reference com/card/cardpet/Card.namePeople
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 6;		// reference com/card/cardpet/Card.namePet
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 7;		// reference com/card/cardpet/Card.dateOfBirth
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 8;		// reference com/card/cardpet/Card.numberPhone
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 9;		// reference com/card/cardpet/Card.remainingBalance
+					aload_0;
+					new 77;		// com/card/cardpet/Avatar
+					dup;
+					invokespecial 98;		// com/card/cardpet/Avatar.<init>()V
+					putfield_a 10;		// reference com/card/cardpet/Card.avatar
+					aload_0;
+					new 100;		// com/card/cardpet/AES
+					dup;
+					invokespecial 101;		// com/card/cardpet/AES.<init>()V
+					putfield_a 11;		// reference com/card/cardpet/Card.aes
+					return;
+		}
+
+		.method public getId(Ljavacard/security/AESKey;[BS)S 1 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					getfield_a_this 4;		// reference com/card/cardpet/Card.id
+					sconst_0;
+					getfield_a_this 4;		// reference com/card/cardpet/Card.id
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 103;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setId([BSSLjavacard/security/AESKey;)V 2 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 4;		// reference com/card/cardpet/Card.id
+					invokevirtual 30;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+		.method public getNamePeople(Ljavacard/security/AESKey;[BS)S 3 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					getfield_a_this 5;		// reference com/card/cardpet/Card.namePeople
+					sconst_0;
+					getfield_a_this 5;		// reference com/card/cardpet/Card.namePeople
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 103;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setNamePeople([BSSLjavacard/security/AESKey;)V 4 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 5;		// reference com/card/cardpet/Card.namePeople
+					invokevirtual 30;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+		.method public getDateOfBirth(Ljavacard/security/AESKey;[BS)S 5 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					getfield_a_this 7;		// reference com/card/cardpet/Card.dateOfBirth
+					sconst_0;
+					getfield_a_this 7;		// reference com/card/cardpet/Card.dateOfBirth
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 103;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setDateOfBirth([BSSLjavacard/security/AESKey;)V 6 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 7;		// reference com/card/cardpet/Card.dateOfBirth
+					invokevirtual 30;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+		.method public getNumberPhone(Ljavacard/security/AESKey;[BS)S 7 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					getfield_a_this 8;		// reference com/card/cardpet/Card.numberPhone
+					sconst_0;
+					getfield_a_this 8;		// reference com/card/cardpet/Card.numberPhone
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 103;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setNumberPhone([BSSLjavacard/security/AESKey;)V 8 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 8;		// reference com/card/cardpet/Card.numberPhone
+					invokevirtual 30;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+		.method public getRemainingBalance(Ljavacard/security/AESKey;[BS)S 9 {
+			.stack 7;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					getfield_a_this 9;		// reference com/card/cardpet/Card.remainingBalance
+					sconst_0;
+					getfield_a_this 9;		// reference com/card/cardpet/Card.remainingBalance
+					arraylength;
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 103;		// decrypt([BSSLjavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setRemainingBalance([BSSLjavacard/security/AESKey;)V 10 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					getfield_a_this 9;		// reference com/card/cardpet/Card.remainingBalance
+					invokevirtual 30;		// encrypt([BSSLjavacard/security/AESKey;[B)V
+					return;
+		}
+
+		.method public getAvatar(Ljavacard/security/AESKey;[BS)S 11 {
+			.stack 5;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 10;		// reference com/card/cardpet/Card.avatar
+					getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					aload_1;
+					aload_2;
+					sload_3;
+					invokevirtual 25;		// getAvatar(Lcom/card/cardpet/AES;Ljavacard/security/AESKey;[BS)S
+					sreturn;
+		}
+
+		.method public setAvatar([BSSLjavacard/security/AESKey;)V 12 {
+			.stack 6;
+			.locals 0;
+
+			.descriptor	Ljavacard/security/AESKey;	3.20;
+
+				L0:	getfield_a_this 10;		// reference com/card/cardpet/Card.avatar
+					aload_1;
+					sload_2;
+					sload_3;
+					getfield_a_this 11;		// reference com/card/cardpet/Card.aes
+					aload 4;
+					invokevirtual 26;		// setAvatar([BSSLcom/card/cardpet/AES;Ljavacard/security/AESKey;)V
+					return;
+		}
+
+	}
+
+	.class public CardPet 3 extends 2.3 {		// extends javacard/framework/Applet
+
+		.fields {
+			private final PIN pin 0;		// Lcom/card/cardpet/PIN;
+			private final 3.20 key 1;		// Ljavacard/security/AESKey;
+			private final 3.15 signature 2;		// Ljavacard/security/Signature;
+			private final byte[] avatarBuf 3;		// [B
+			private final byte[] signatureBuf 4;		// [B
+			private Card card 5;		// Lcom/card/cardpet/Card;
+			private 3.8 privateKey 6;		// Ljavacard/security/RSAPrivateKey;
+			private 3.9 publicKey 7;		// Ljavacard/security/RSAPublicKey;
+			private static final byte INS_VERIFY = 0;		// B
+			private static final byte INS_CREATE = 1;		// B
+			private static final byte INS_GET = 2;		// B
+			private static final byte INS_UPDATE = 3;		// B
+			private static final byte PIN = 4;		// B
+			private static final byte PETCARD = 5;		// B
+			private static final byte SIGNATURE = 6;		// B
+			private static final byte INFORMATION = 7;		// B
+			private static final byte REMAINING_BALANCE = 8;		// B
+			private static final byte AVATAR = 9;		// B
+			private static final byte INS_RESET_TRY_PIN = 16;		// B
+		}
+
+		.publicMethodTable 7 {
+			equals(Ljava/lang/Object;)Z;
+			register()V;
+			register([BSB)V;
+			selectingApplet()Z;
+			deselect()V;
+			getShareableInterfaceObject(Ljavacard/framework/AID;B)Ljavacard/framework/Shareable;;
+			select()Z;
+			process(Ljavacard/framework/APDU;)V;
+			createInformation(Ljavacard/framework/APDU;)V;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.implementedInterfaceInfoTable { 
+			.interface 4.0 { 		// javacardx/apdu/ExtendedLength
+			}
+
+		}
+
+		.method public <init>()V 0 {
+			.stack 4;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 27;		// javacard/framework/Applet.<init>()V
+					aload_0;
+					new 28;		// com/card/cardpet/PIN
+					dup;
+					invokespecial 29;		// com/card/cardpet/PIN.<init>()V
+					putfield_a 12;		// reference com/card/cardpet/CardPet.pin
+					aload_0;
+					bspush 15;
+					sspush 128;
+					sconst_0;
+					invokestatic 31;		// javacard/security/KeyBuilder.buildKey(BSZ)Ljavacard/security/Key;
+					checkcast 0 32;		// T_CLASSORINTERFACE javacard/security/AESKey
+					putfield_a 13;		// reference com/card/cardpet/CardPet.key
+					aload_0;
+					bspush 10;
+					sconst_0;
+					invokestatic 34;		// javacard/security/Signature.getInstance(BZ)Ljavacard/security/Signature;
+					putfield_a 14;		// reference com/card/cardpet/CardPet.signature
+					aload_0;
+					sspush 4096;
+					newarray 11;
+					putfield_a 15;		// reference com/card/cardpet/CardPet.avatarBuf
+					aload_0;
+					sspush 128;
+					sconst_2;
+					invokestatic 99;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					putfield_a 16;		// reference com/card/cardpet/CardPet.signatureBuf
+					return;
+		}
+
+		.method public static install([BSB)V 1 {
+			.stack 5;
+			.locals 0;
+
+				L0:	new 38;		// com/card/cardpet/CardPet
+					dup;
+					invokespecial 39;		// com/card/cardpet/CardPet.<init>()V
+					aload_0;
+					sload_1;
+					sconst_1;
+					sadd;
+					aload_0;
+					sload_1;
+					baload;
+					invokevirtual 40;		// register([BSB)V
+					return;
+		}
+
+		.method public process(Ljavacard/framework/APDU;)V 7 {
+			.stack 2;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_0;
+					invokevirtual 41;		// selectingApplet()Z
+					ifeq L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_1;
+					baload;
+					slookupswitch L9 5 0 L4 1 L5 2 L6 3 L7 16 L8;
+				L4:	aload_0;
+					aload_1;
+					invokespecial 43;		// com/card/cardpet/CardPet.verify(Ljavacard/framework/APDU;)V
+					goto L10;
+				L5:	aload_0;
+					aload_1;
+					invokespecial 44;		// com/card/cardpet/CardPet.create(Ljavacard/framework/APDU;)V
+					goto L10;
+				L6:	aload_0;
+					aload_1;
+					invokespecial 45;		// com/card/cardpet/CardPet.get(Ljavacard/framework/APDU;)V
+					goto L10;
+				L7:	aload_0;
+					aload_1;
+					invokespecial 46;		// com/card/cardpet/CardPet.update(Ljavacard/framework/APDU;)V
+					goto L10;
+				L8:	aload_0;
+					aload_1;
+					invokespecial 47;		// com/card/cardpet/CardPet.resetPin(Ljavacard/framework/APDU;)V
+					goto L10;
+				L9:	sspush 27904;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L10:	return;
+		}
+
+		.method private create(Ljavacard/framework/APDU;)V {
+			.stack 2;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L1:	aload_2;
+					sconst_2;
+					baload;
+					slookupswitch L4 2 5 L2 6 L3;
+				L2:	aload_0;
+					aload_1;
+					invokevirtual 48;		// createInformation(Ljavacard/framework/APDU;)V
+					goto L5;
+				L3:	aload_0;
+					aload_1;
+					invokespecial 49;		// com/card/cardpet/CardPet.createSignature(Ljavacard/framework/APDU;)V
+					goto L5;
+				L4:	sspush 27270;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	return;
+		}
+
+		.method private get(Ljavacard/framework/APDU;)V {
+			.stack 2;
+			.locals 1;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					ifnonnull L2;
+				L1:	return;
+				L2:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_2;
+					baload;
+					sconst_5;
+					if_scmpeq L5;
+				L4:	sspush 27270;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	aload_2;
+					sconst_3;
+					baload;
+					stableswitch L9 7 9 L6 L7 L8;
+				L6:	aload_0;
+					aload_1;
+					invokespecial 51;		// com/card/cardpet/CardPet.getInformation(Ljavacard/framework/APDU;)V
+					goto L10;
+				L7:	aload_0;
+					aload_1;
+					invokespecial 52;		// com/card/cardpet/CardPet.getRemainingBalance(Ljavacard/framework/APDU;)V
+					goto L10;
+				L8:	aload_0;
+					aload_1;
+					invokespecial 53;		// com/card/cardpet/CardPet.getAvatar(Ljavacard/framework/APDU;)V
+					goto L10;
+				L9:	sspush 27270;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L10:	return;
+		}
+
+		.method private update(Ljavacard/framework/APDU;)V {
+			.stack 2;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					ifnonnull L2;
+				L1:	sspush 27014;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_2;
+					baload;
+					slookupswitch L6 2 4 L5 5 L4;
+				L4:	goto L7;
+				L5:	aload_0;
+					aload_1;
+					invokespecial 54;		// com/card/cardpet/CardPet.updatePin(Ljavacard/framework/APDU;)V
+					return;
+				L6:	sspush 27270;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L7:	aload_2;
+					sconst_3;
+					baload;
+					sstore_3;
+				L8:	sload_3;
+					bspush 9;
+					if_scmpne L10;
+				L9:	aload_0;
+					aload_1;
+					invokespecial 55;		// com/card/cardpet/CardPet.updateAvatar(Ljavacard/framework/APDU;)V
+					return;
+				L10:	aload_2;
+					sconst_4;
+					baload;
+					ifne L12;
+				L11:	sspush 27012;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L12:	sload_3;
+					slookupswitch L15 2 7 L13 8 L14;
+				L13:	aload_0;
+					aload_2;
+					invokespecial 56;		// com/card/cardpet/CardPet.updateInformation([B)V
+					goto L16;
+				L14:	aload_0;
+					aload_2;
+					invokespecial 57;		// com/card/cardpet/CardPet.updateRemainingBalance([B)V
+					goto L16;
+				L15:	sspush 27270;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L16:	return;
+		}
+
+		.method private verify(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L1:	sconst_5;
+					sstore_3;
+				L2:	aload_2;
+					sconst_4;
+					baload;
+					sstore 4;
+				L3:	getfield_a_this 12;		// reference com/card/cardpet/CardPet.pin
+					aload_2;
+					sload_3;
+					sload 4;
+					invokevirtual 58;		// match([BBS)Z
+					ifeq L5;
+				L4:	return;
+				L5:	aload_2;
+					sconst_5;
+					getfield_a_this 12;		// reference com/card/cardpet/CardPet.pin
+					invokevirtual 59;		// getTryRemaining()B
+					bastore;
+					aload_1;
+					sconst_5;
+					sconst_1;
+					invokevirtual 60;		// setOutgoingAndSend(SS)V
+					sspush 27264;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+					return;
+		}
+
+		.method public createInformation(Ljavacard/framework/APDU;)V 8 {
+			.stack 5;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					ifnull L2;
+				L1:	sspush 27014;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_4;
+					baload;
+					ifne L5;
+				L4:	sspush 27012;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L5:	getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					getfield_a_this 12;		// reference com/card/cardpet/CardPet.pin
+					invokevirtual 61;		// getPIN()[B
+					sconst_0;
+					invokeinterface 3 32 4;		// javacard/security/AESKey
+					invokestatic 62;		// javacard/framework/JCSystem.beginTransaction()V
+					aload_0;
+					new 63;		// com/card/cardpet/Card
+					dup;
+					invokespecial 64;		// com/card/cardpet/Card.<init>()V
+					putfield_a 17;		// reference com/card/cardpet/CardPet.card
+					sconst_5;
+					sstore_3;
+				L6:	aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+				L7:	getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					invokevirtual 65;		// setId([BSSLjavacard/security/AESKey;)V
+					sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					invokevirtual 66;		// setNamePeople([BSSLjavacard/security/AESKey;)V
+					sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					invokevirtual 67;		// setDateOfBirth([BSSLjavacard/security/AESKey;)V
+					sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					invokevirtual 68;		// setNumberPhone([BSSLjavacard/security/AESKey;)V
+					sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					sload 4;
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					invokevirtual 69;		// setRemainingBalance([BSSLjavacard/security/AESKey;)V
+					invokestatic 70;		// javacard/framework/JCSystem.commitTransaction()V
+					invokestatic 71;		// com/card/cardpet/RSA.generateKeyPair()Ljavacard/security/KeyPair;
+					astore 5;
+				L8:	aload_0;
+					aload 5;
+					invokevirtual 72;		// getPrivate()Ljavacard/security/PrivateKey;
+					checkcast 0 73;		// T_CLASSORINTERFACE javacard/security/RSAPrivateKey
+					putfield_a 18;		// reference com/card/cardpet/CardPet.privateKey
+					aload_0;
+					aload 5;
+					invokevirtual 75;		// getPublic()Ljavacard/security/PublicKey;
+					checkcast 0 76;		// T_CLASSORINTERFACE javacard/security/RSAPublicKey
+					putfield_a 19;		// reference com/card/cardpet/CardPet.publicKey
+					getfield_a_this 19;		// reference com/card/cardpet/CardPet.publicKey
+					aload_2;
+					sconst_0;
+					invokestatic 78;		// com/card/cardpet/RSA.serializePublicKey(Ljavacard/security/RSAPublicKey;[BS)S
+					sstore 4;
+					aload_1;
+					sconst_0;
+					sload 4;
+					invokevirtual 60;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private createSignature(Ljavacard/framework/APDU;)V {
+			.stack 6;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					ifnonnull L2;
+				L1:	sspush 27014;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L3:	aload_2;
+					sconst_4;
+					baload;
+					sstore_3;
+				L4:	sload_3;
+					ifne L6;
+				L5:	sspush 27012;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L6:	getfield_a_this 14;		// reference com/card/cardpet/CardPet.signature
+					getfield_a_this 18;		// reference com/card/cardpet/CardPet.privateKey
+					sconst_1;
+					invokevirtual 79;		// init(Ljavacard/security/Key;B)V
+					getfield_a_this 14;		// reference com/card/cardpet/CardPet.signature
+					aload_2;
+					sconst_5;
+					sload_3;
+					getfield_a_this 16;		// reference com/card/cardpet/CardPet.signatureBuf
+					sconst_0;
+					invokevirtual 80;		// sign([BSS[BS)S
+					pop;
+					aload_1;
+					invokevirtual 81;		// setOutgoing()S
+					pop;
+					aload_1;
+					getfield_a_this 16;		// reference com/card/cardpet/CardPet.signatureBuf
+					arraylength;
+					invokevirtual 82;		// setOutgoingLength(S)V
+					aload_1;
+					getfield_a_this 16;		// reference com/card/cardpet/CardPet.signatureBuf
+					sconst_0;
+					getfield_a_this 16;		// reference com/card/cardpet/CardPet.signatureBuf
+					arraylength;
+					invokevirtual 83;		// sendBytesLong([BSS)V
+					return;
+		}
+
+		.method private getInformation(Ljavacard/framework/APDU;)V {
+			.stack 7;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L1:	sconst_0;
+					sstore_3;
+				L2:	aload_2;
+					sload_3;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 84;		// getId(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sconst_1;
+					sadd;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 85;		// getNamePeople(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sconst_1;
+					sadd;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 86;		// getDateOfBirth(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sconst_1;
+					sadd;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 87;		// getNumberPhone(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sconst_1;
+					sadd;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					invokevirtual 88;		// getRemainingBalance(Ljavacard/security/AESKey;[BS)S
+					s2b;
+					bastore;
+					aload_1;
+					sconst_0;
+					sload_3;
+					aload_2;
+					sload_3;
+					baload;
+					sadd;
+					sconst_1;
+					sadd;
+					invokevirtual 60;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private getRemainingBalance(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L1:	getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					aload_2;
+					sconst_0;
+					invokevirtual 88;		// getRemainingBalance(Ljavacard/security/AESKey;[BS)S
+					sstore_3;
+				L2:	aload_1;
+					sconst_0;
+					sload_3;
+					invokevirtual 60;		// setOutgoingAndSend(SS)V
+					return;
+		}
+
+		.method private getMin(SS)S {
+			.stack 2;
+			.locals 0;
+
+				L0:	sload_1;
+					sload_2;
+					if_scmpgt L2;
+				L1:	sload_1;
+					sreturn;
+				L2:	sload_2;
+					sreturn;
+		}
+
+		.method private getAvatar(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					getfield_a_this 15;		// reference com/card/cardpet/CardPet.avatarBuf
+					sconst_0;
+					invokevirtual 89;		// getAvatar(Ljavacard/security/AESKey;[BS)S
+					sstore_2;
+				L1:	aload_1;
+					invokevirtual 81;		// setOutgoing()S
+					sstore_3;
+				L2:	sconst_0;
+					sstore 4;
+				L3:	sconst_0;
+					sstore 5;
+				L4:	aload_1;
+					sload_2;
+					invokevirtual 82;		// setOutgoingLength(S)V
+				L5:	sload_2;
+					ifle L7;
+				L6:	aload_0;
+					sload_2;
+					sload_3;
+					invokespecial 90;		// com/card/cardpet/CardPet.getMin(SS)S
+					sstore 4;
+					aload_1;
+					getfield_a_this 15;		// reference com/card/cardpet/CardPet.avatarBuf
+					sload 5;
+					sload 4;
+					invokevirtual 83;		// sendBytesLong([BSS)V
+					sload_2;
+					sload 4;
+					ssub;
+					sstore_2;
+					sload 5;
+					sload 4;
+					sadd;
+					sstore 5;
+					goto L5;
+				L7:	return;
+		}
+
+		.method private updatePin(Ljavacard/framework/APDU;)V {
+			.stack 4;
+			.locals 3;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L1:	sconst_5;
+					sstore_3;
+				L2:	aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+				L3:	getfield_a_this 12;		// reference com/card/cardpet/CardPet.pin
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					s2b;
+					sload 4;
+					invokevirtual 58;		// match([BBS)Z
+					ifeq L5;
+				L4:	sload_3;
+					sload 4;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_3;
+					aload_2;
+					sload_3;
+					baload;
+					sstore 4;
+					getfield_a_this 12;		// reference com/card/cardpet/CardPet.pin
+					aload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					s2b;
+					sload 4;
+					invokevirtual 91;		// update([BBS)V
+					return;
+				L5:	aload_2;
+					sconst_5;
+					getfield_a_this 12;		// reference com/card/cardpet/CardPet.pin
+					invokevirtual 59;		// getTryRemaining()B
+					bastore;
+					aload_1;
+					sconst_5;
+					sconst_1;
+					invokevirtual 60;		// setOutgoingAndSend(SS)V
+					sspush 27264;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+					return;
+		}
+
+		.method private updateAvatar(Ljavacard/framework/APDU;)V {
+			.stack 5;
+			.locals 4;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	aload_1;
+					invokevirtual 42;		// getBuffer()[B
+					astore_2;
+				L1:	aload_1;
+					invokevirtual 92;		// setIncomingAndReceive()S
+					sstore_3;
+				L2:	aload_1;
+					invokevirtual 93;		// getOffsetCdata()S
+					sstore 4;
+				L3:	sconst_0;
+					sstore 5;
+				L4:	sload_3;
+					ifle L6;
+				L5:	aload_2;
+					sload 4;
+					getfield_a_this 15;		// reference com/card/cardpet/CardPet.avatarBuf
+					sload 5;
+					sload_3;
+					invokestatic 94;		// javacard/framework/Util.arrayCopyNonAtomic([BS[BSS)S
+					pop;
+					sload 5;
+					sload_3;
+					sadd;
+					sstore 5;
+					aload_1;
+					sload 4;
+					invokevirtual 95;		// receiveBytes(S)S
+					sstore_3;
+					goto L4;
+				L6:	getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					getfield_a_this 15;		// reference com/card/cardpet/CardPet.avatarBuf
+					sconst_0;
+					sload 5;
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					invokevirtual 96;		// setAvatar([BSSLjavacard/security/AESKey;)V
+					return;
+		}
+
+		.method private updateInformation([B)V {
+			.stack 5;
+			.locals 2;
+
+				L0:	invokestatic 62;		// javacard/framework/JCSystem.beginTransaction()V
+					sconst_5;
+					sstore_2;
+				L1:	aload_1;
+					sload_2;
+					baload;
+					sstore_3;
+				L2:	getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					aload_1;
+					sload_2;
+					sconst_1;
+					sadd;
+					sload_3;
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					invokevirtual 66;		// setNamePeople([BSSLjavacard/security/AESKey;)V
+					sload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore_3;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					aload_1;
+					sload_2;
+					sconst_1;
+					sadd;
+					sload_3;
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					invokevirtual 67;		// setDateOfBirth([BSSLjavacard/security/AESKey;)V
+					sload_2;
+					sload_3;
+					sconst_1;
+					sadd;
+					s2b;
+					sadd;
+					s2b;
+					sstore_2;
+					aload_1;
+					sload_2;
+					baload;
+					sstore_3;
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					aload_1;
+					sload_2;
+					sconst_1;
+					sadd;
+					sload_3;
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					invokevirtual 68;		// setNumberPhone([BSSLjavacard/security/AESKey;)V
+					invokestatic 70;		// javacard/framework/JCSystem.commitTransaction()V
+					return;
+		}
+
+		.method private updateRemainingBalance([B)V {
+			.stack 5;
+			.locals 2;
+
+				L0:	sconst_5;
+					sstore_2;
+				L1:	aload_1;
+					sconst_4;
+					baload;
+					sstore_3;
+				L2:	invokestatic 62;		// javacard/framework/JCSystem.beginTransaction()V
+					getfield_a_this 17;		// reference com/card/cardpet/CardPet.card
+					aload_1;
+					sload_2;
+					sload_3;
+					getfield_a_this 13;		// reference com/card/cardpet/CardPet.key
+					invokevirtual 69;		// setRemainingBalance([BSSLjavacard/security/AESKey;)V
+					invokestatic 70;		// javacard/framework/JCSystem.commitTransaction()V
+					return;
+		}
+
+		.method private resetPin(Ljavacard/framework/APDU;)V {
+			.stack 1;
+			.locals 0;
+
+			.descriptor	Ljavacard/framework/APDU;	2.10;
+
+				L0:	getfield_a_this 12;		// reference com/card/cardpet/CardPet.pin
+					invokevirtual 97;		// resetRetryPin()V
+					return;
+		}
+
+	}
+
+	.class public PIN 4 extends 0.0 {		// extends java/lang/Object
+
+		.fields {
+			public boolean isValidated 0;		// Z
+			private final byte[] pin 1;		// [B
+			private final 3.11 messageDigest 2;		// Ljavacard/security/MessageDigest;
+			private byte retry 3;		// B
+			private byte tryRemaining 4;		// B
+			private static final byte[] PIN_DEFAULT = {49,49,49,49,49,49};		// [B
+			private static final byte PIN_RETRY = 3;		// B
+		}
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+			match([BBS)Z;
+			update([BBS)V;
+			resetRetryPin()V;
+			getPIN()[B;
+			getTryRemaining()B;
+			isValidated()Z;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 6;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 74;		// java/lang/Object.<init>()V
+					aload_0;
+					bspush 16;
+					newarray 11;
+					putfield_a 20;		// reference com/card/cardpet/PIN.pin
+					aload_0;
+					sconst_3;
+					putfield_b 21;		// byte com/card/cardpet/PIN.retry
+					aload_0;
+					sconst_3;
+					putfield_b 22;		// byte com/card/cardpet/PIN.tryRemaining
+					aload_0;
+					sconst_0;
+					putfield_b 23;		// boolean com/card/cardpet/PIN.isValidated
+					aload_0;
+					sconst_2;
+					sconst_0;
+					invokestatic 102;		// javacard/security/MessageDigest.getInstance(BZ)Ljavacard/security/MessageDigest;
+					putfield_a 24;		// reference com/card/cardpet/PIN.messageDigest
+					getfield_a_this 24;		// reference com/card/cardpet/PIN.messageDigest
+					getstatic_a 104;		// reference com/card/cardpet/PIN.PIN_DEFAULT
+					sconst_0;
+					getstatic_a 104;		// reference com/card/cardpet/PIN.PIN_DEFAULT
+					arraylength;
+					getfield_a_this 20;		// reference com/card/cardpet/PIN.pin
+					sconst_0;
+					invokevirtual 105;		// doFinal([BSS[BS)S
+					pop;
+					return;
+		}
+
+		.method public match([BBS)Z 1 {
+			.stack 6;
+			.locals 1;
+
+				L0:	getfield_b_this 22;		// byte com/card/cardpet/PIN.tryRemaining
+					ifne L2;
+				L1:	sconst_0;
+					sreturn;
+				L2:	getfield_a_this 20;		// reference com/card/cardpet/PIN.pin
+					arraylength;
+					sconst_2;
+					invokestatic 99;		// javacard/framework/JCSystem.makeTransientByteArray(SB)[B
+					astore 4;
+				L3:	getfield_a_this 24;		// reference com/card/cardpet/PIN.messageDigest
+					invokevirtual 106;		// reset()V
+					getfield_a_this 24;		// reference com/card/cardpet/PIN.messageDigest
+					aload_1;
+					sload_2;
+					sload_3;
+					aload 4;
+					sconst_0;
+					invokevirtual 105;		// doFinal([BSS[BS)S
+					pop;
+					getfield_a_this 20;		// reference com/card/cardpet/PIN.pin
+					sconst_0;
+					aload 4;
+					sconst_0;
+					getfield_a_this 20;		// reference com/card/cardpet/PIN.pin
+					arraylength;
+					invokestatic 107;		// javacard/framework/Util.arrayCompare([BS[BSS)B
+					ifne L5;
+				L4:	aload_0;
+					getfield_b_this 21;		// byte com/card/cardpet/PIN.retry
+					putfield_b 22;		// byte com/card/cardpet/PIN.tryRemaining
+					aload_0;
+					sconst_1;
+					putfield_b 23;		// boolean com/card/cardpet/PIN.isValidated
+					sconst_1;
+					sreturn;
+				L5:	aload_0;
+					dup;
+					getfield_b 22;		// byte com/card/cardpet/PIN.tryRemaining
+					sconst_1;
+					ssub;
+					s2b;
+					putfield_b 22;		// byte com/card/cardpet/PIN.tryRemaining
+					sconst_0;
+					sreturn;
+		}
+
+		.method public update([BBS)V 2 {
+			.stack 6;
+			.locals 0;
+
+				L0:	sload_3;
+					sconst_1;
+					if_scmpge L2;
+				L1:	sspush 27012;
+					invokestatic 35;		// javacard/framework/ISOException.throwIt(S)V
+				L2:	getfield_a_this 24;		// reference com/card/cardpet/PIN.messageDigest
+					invokevirtual 106;		// reset()V
+					getfield_a_this 24;		// reference com/card/cardpet/PIN.messageDigest
+					aload_1;
+					sload_2;
+					sload_3;
+					getfield_a_this 20;		// reference com/card/cardpet/PIN.pin
+					sconst_0;
+					invokevirtual 105;		// doFinal([BSS[BS)S
+					pop;
+					aload_0;
+					getfield_b_this 21;		// byte com/card/cardpet/PIN.retry
+					putfield_b 22;		// byte com/card/cardpet/PIN.tryRemaining
+					return;
+		}
+
+		.method public resetRetryPin()V 3 {
+			.stack 2;
+			.locals 0;
+
+				L0:	aload_0;
+					getfield_b_this 21;		// byte com/card/cardpet/PIN.retry
+					putfield_b 22;		// byte com/card/cardpet/PIN.tryRemaining
+					aload_0;
+					sconst_0;
+					putfield_b 23;		// boolean com/card/cardpet/PIN.isValidated
+					return;
+		}
+
+		.method public getPIN()[B 4 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_a_this 20;		// reference com/card/cardpet/PIN.pin
+					areturn;
+		}
+
+		.method public getTryRemaining()B 5 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_b_this 22;		// byte com/card/cardpet/PIN.tryRemaining
+					sreturn;
+		}
+
+		.method public isValidated()Z 6 {
+			.stack 1;
+			.locals 0;
+
+				L0:	getfield_b_this 23;		// boolean com/card/cardpet/PIN.isValidated
+					sreturn;
+		}
+
+	}
+
+	.class public RSA 5 extends 0.0 {		// extends java/lang/Object
+
+		.publicMethodTable 1 {
+			equals(Ljava/lang/Object;)Z;
+		}
+
+		.packageMethodTable 0 {
+		}
+
+		.method public <init>()V 0 {
+			.stack 1;
+			.locals 0;
+
+				L0:	aload_0;
+					invokespecial 74;		// java/lang/Object.<init>()V
+					return;
+		}
+
+		.method public static generateKeyPair()Ljavacard/security/KeyPair; 1 {
+			.stack 4;
+			.locals 1;
+
+			.descriptor	Ljavacard/security/KeyPair;	3.16;
+
+				L0:	new 108;		// javacard/security/KeyPair
+					dup;
+					sconst_1;
+					sspush 1024;
+					invokespecial 109;		// javacard/security/KeyPair.<init>(BS)V
+					astore_0;
+				L1:	aload_0;
+					invokevirtual 110;		// genKeyPair()V
+					aload_0;
+					areturn;
+		}
+
+		.method public static serializePublicKey(Ljavacard/security/RSAPublicKey;[BS)S 2 {
+			.stack 4;
+			.locals 2;
+
+			.descriptor	Ljavacard/security/RSAPublicKey;	3.9;
+
+				L0:	aload_0;
+					aload_1;
+					sload_2;
+					sconst_2;
+					sadd;
+					invokeinterface 3 76 4;		// javacard/security/RSAPublicKey
+					sstore_3;
+				L1:	aload_0;
+					aload_1;
+					sload_2;
+					sconst_2;
+					sadd;
+					sload_3;
+					sadd;
+					sconst_2;
+					sadd;
+					invokeinterface 3 76 5;		// javacard/security/RSAPublicKey
+					sstore 4;
+				L2:	aload_1;
+					sload_2;
+					sload_3;
+					invokestatic 111;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					aload_1;
+					sload_2;
+					sconst_2;
+					sadd;
+					sload_3;
+					sadd;
+					sload 4;
+					invokestatic 111;		// javacard/framework/Util.setShort([BSS)S
+					pop;
+					sconst_4;
+					sload_3;
+					sadd;
+					sload 4;
+					sadd;
+					sreturn;
+		}
+
+	}
+
+}

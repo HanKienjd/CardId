@@ -1,0 +1,13 @@
+<JavaCardProject name="cardpet">
+<USER>
+<PKG name="com.card.cardpet" aid="11 22 33 44 55" major="1" minor="0">
+<APPLET aid="11 22 33 44 55 00" instanceaid="" parameter="" authority="" privileges="" index="-21184" name="CardPet"/>
+<CLASS name="Card"/>
+<CLASS name="Avatar"/>
+<CLASS name="AES"/>
+<CLASS name="PIN"/>
+<CLASS name="RSA"/>
+</PKG>
+<Libs/>
+</USER>
+</JavaCardProject>
